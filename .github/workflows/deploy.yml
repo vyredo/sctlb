@@ -1,0 +1,27 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main # Set a branch name to trigger deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} # Set the Vercel token here
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} # Set the Vercel org id here
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # Set the Vercel project id here
+        run: npx vercel --token $VERCEL_TOKEN --prod

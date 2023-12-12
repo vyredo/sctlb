@@ -1,0 +1,48 @@
+.carousel-component {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 68px;
+  .arrow {
+    font-size: 2rem;
+    z-index: 1;
+    color: #00000080;
+    &.active {
+      color: #000;
+      cursor: pointer;
+    }
+  }
+  .sequence {
+    overflow: hidden;
+    width: 100%;
+    .items {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      display: flex;
+      gap: 6px;
+      .item {
+        cursor: pointer;
+        flex: 1 0 33.3333%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        &.hover {
+          cursor: zoom-in;
+          background-color: #ffffff;
+          img {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+
+  .item {
+    flex: 1 0 33.3333%;
+    flex-basis: calc(100% / 3);
+  }
+}

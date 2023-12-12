@@ -1,0 +1,38 @@
+/** style that has no prefix is always mobile */
+.products {
+  .left {
+    .title {
+      font-size: calc(24px + 16 * ((100vw - 320px) / 2080));
+      font-weight: 700;
+    }
+    .rating {
+      .review-wording {
+        color: #007bff;
+        vertical-align: sub;
+        margin-top: 2px;
+        display: inline-block;
+        padding: 0 15px;
+      }
+    }
+    .image {
+      width: 100%;
+      border: 1px solid red;
+    }
+  }
+
+  .right {
+  }
+}
+
+/** */
+.tablet {
+}
+
+.desktop.products {
+  display: flex;
+  .left {
+    .title {
+      display: none;
+    }
+  }
+}
