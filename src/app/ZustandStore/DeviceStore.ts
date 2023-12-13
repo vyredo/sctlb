@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
 export enum Device {
-  Mobile = <any>0,
-  Tablet = <any>1,
-  Desktop = <any>2,
+  Mobile = <any>"mobile",
+  Tablet = <any>"tablet",
+  Desktop = <any>"desktop",
 }
 
 interface DeviceStoreState {

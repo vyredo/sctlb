@@ -1,0 +1,9 @@
+html,
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.desktop {
+  max-width: 1280px;
+}

@@ -1,6 +1,7 @@
 "use client";
 import React, { ReactNode, useEffect, useState } from "react";
-import { Device, useDeviceStore } from "../ZustandStore/DeviceStore";
+import { Device, useDeviceStore } from "../../ZustandStore/DeviceStore";
+import "./LayoutPage.css";
 
 interface LayoutPageProps {
   children: ReactNode;
@@ -22,7 +23,6 @@ export const LayoutPage: React.FC<LayoutPageProps> = ({ children, className }) =
 
   useEffect(() => {
     const handleResize = () => {
-      console.log("onresize");
       if (window.innerWidth > MAX_WIDTH.TABLET) {
         setDevice(Device.Desktop);
       } else if (window.innerWidth > MAX_WIDTH.MOBILE) {

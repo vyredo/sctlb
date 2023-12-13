@@ -2,19 +2,16 @@ import { create } from "zustand";
 import { Product } from "./model/Product";
 import { useShallow } from "zustand/react/shallow";
 
-interface ProductStoreState {
+interface ProductsStoreState {
   products: Product[];
   updateProducts: (p: Product) => void;
   deleteProducts: (p: Product) => void;
   addProducts: (p: Product) => void;
   clearProducts: () => void;
-  product: Product | undefined;
-  viewProductById: (p: Product) => void;
-  unviewProduct: () => void;
 }
 
 // todo: write unit tes for this
-export const useProductStore = create<ProductStoreState>()((set) => ({
+export const useProductsStore = create<ProductsStoreState>()((set) => ({
   products: [],
   updateProducts: (p: Product) =>
     set((state) => {
@@ -28,8 +25,4 @@ export const useProductStore = create<ProductStoreState>()((set) => ({
   deleteProducts: (p: Product) => set((state) => ({ products: state.products.filter((x) => x.id !== p.id) })),
   addProducts: (p: Product) => set((state) => ({ products: [...state.products, p] })),
   clearProducts: () => set({ products: [] }, true),
-
-  product: undefined,
-  viewProductById: (p: Product) => set({ product: p }, true),
-  unviewProduct: () => set({ product: undefined }, true),
 }));

@@ -11,6 +11,9 @@ export const Title: FC<Props> = ({ product }) => {
   return (
     <>
       <div className="title">{capitalize(product.title)}</div>
+      <div className="subtitle">
+        {product.category} for <span className="brand">{product.brand}</span>
+      </div>
       <div className="rating">
         <Stars rating={product.rating} />
         <div className="review-wording">{product.rating}/5 rating</div>

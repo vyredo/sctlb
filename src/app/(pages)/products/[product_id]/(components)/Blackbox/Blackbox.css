@@ -1,4 +1,6 @@
-.blackbox-container {
+.desktop .blackbox-container,
+.tablet .blackbox-container,
+.mobile .blackbox-container {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.9);
@@ -13,6 +15,7 @@
   flex-direction: column;
 
   .header {
+    max-width: 1280px;
     top: 0;
     position: absolute;
     width: 100%;
@@ -31,6 +34,7 @@
     }
 
     .right {
+      flex: 0 0 100px;
       display: flex;
       .close {
         cursor: pointer;
@@ -47,9 +51,12 @@
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 16px;
     z-index: 2;
     --arrow-width: 20px;
     .arrow {
+      cursor: pointer;
       font-size: 20px;
       color: white;
       flex: 0 0 var(--arrow-width);
@@ -57,6 +64,7 @@
     .image {
       flex: 1;
       width: calc(100vw - calc(var(--arrow-width) * 2));
+      max-width: 800px;
     }
   }
 }

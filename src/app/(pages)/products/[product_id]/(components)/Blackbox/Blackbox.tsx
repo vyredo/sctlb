@@ -5,7 +5,6 @@
 import React, { useCallback, useEffect } from "react";
 import "./Blackbox.css";
 import { create } from "zustand";
-import fullscreenSVG from "@/assets/fullscreen.svg";
 import { FullscreenSVG } from "@/assets/fullscreen";
 
 interface BlackboxState {
@@ -50,7 +49,6 @@ export const Blackbox: React.FC<Props> = ({ images }) => {
 
   const selectNext = useCallback(
     (idx: number) => {
-      console.log("next!!");
       const nextIdx = idx + 1;
       if (nextIdx >= images.length) return selectImageByIdx(0); // cycle back to first image
       selectImageByIdx(nextIdx);
@@ -101,7 +99,13 @@ export const Blackbox: React.FC<Props> = ({ images }) => {
       }}
     >
       {isHeaderShow && (
-        <div className="header" onClick={(e) => {}}>
+        <div
+          className="header"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
           <div className="left">
             {selectedIdx + 1}/{images.length}
           </div>
@@ -113,35 +117,18 @@ export const Blackbox: React.FC<Props> = ({ images }) => {
           </div>
         </div>
       )}
-      <div className="content">
-        <div
-          className="arrow"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            selectPrev(selectedIdx);
-          }}
-        >
+      <div
+        className="content"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
+        <div className="arrow" onClick={() => selectPrev(selectedIdx)}>
           &#8592;
         </div>
-        <img
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleHeader();
-          }}
-          className="image"
-          src={images[selectedIdx]}
-          alt=""
-        />
-        <div
-          className="arrow"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            selectNext(selectedIdx);
-          }}
-        >
+        <img onClick={toggleHeader} className="image" src={images[selectedIdx]} alt="" />
+        <div className="arrow" onClick={() => selectNext(selectedIdx)}>
           &rarr;
         </div>
       </div>
