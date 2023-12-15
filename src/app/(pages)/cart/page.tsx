@@ -99,7 +99,6 @@ const Cart: React.FC = () => {
       total: totalRealPrice.current,
     });
 
-    console.log(resp);
     // save to local storage
     let paymentListStr = localStorage.getItem("paymentList");
     let paymentList = [];

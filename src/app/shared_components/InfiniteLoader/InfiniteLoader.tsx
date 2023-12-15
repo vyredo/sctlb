@@ -14,7 +14,6 @@ export const InfiniteLoader: React.FC<{ loadFunction: () => Promise<any> }> = ({
       if (entries[0].intersectionRatio <= 0) return;
       // load more content;
       throttleFunc.current();
-      console.log("load more content");
     });
     // start observing
     if (divRef.current) {

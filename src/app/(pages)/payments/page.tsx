@@ -19,7 +19,6 @@ export default function Payments() {
       setLoading(true);
       const paymentList = JSON.parse(paymentListStr);
       const list = await getPaymentsStatus(paymentList);
-      console.log(list);
       if (Array.isArray(list)) {
         setList(list);
       }
@@ -28,7 +27,6 @@ export default function Payments() {
     onmount();
   }, []);
 
-  console.log(list);
   return (
     <LayoutPage className="payments" seotitle={"payments"} loading={loading}>
       <h1>Payments</h1>

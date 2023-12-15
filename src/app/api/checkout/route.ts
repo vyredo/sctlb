@@ -10,10 +10,8 @@ const stripe = new Stripe(secret);
 
 export async function GET(req: NextRequest) {
   const urlSearchParams = new URLSearchParams(req.url.split("?")[1]);
-  console.log("GET REQUEST", urlSearchParams);
   const id = urlSearchParams.get("id") as string;
 
-  console.log("what is id", id, req.url);
   // "pi_3OKe3TBIlFOPTHcl02S4nriQ";
   const stripe = new Stripe(secret);
   let response;
