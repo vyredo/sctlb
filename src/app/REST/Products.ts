@@ -1,5 +1,5 @@
 import { products } from "../../mock/products";
-import { Product } from "../model/Product";
+import { Product } from "../Type/Product";
 const chairImages = [
   "https://images.secretlab.co/turntable/tr:n-w_1500/R22PU-Stealth",
   "https://images.secretlab.co/turntable/tr:n-w_1500/R22SW-CnC",

@@ -2,8 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import { getProductById } from "@/app/REST/Products";
-import { Product } from "@/app/model/Product";
-import { Header } from "@/app/shared_components/Header/Header";
+import { Product } from "@/app/Type/Product";
 import { ProductImage } from "./(components)/ProductImage";
 import ImageCarousel from "./(components)/ImageCarousell/ImageCarousel";
 import { LayoutPage } from "@/app/shared_components/LayoutPage/LayoutPage";
@@ -13,13 +12,12 @@ import { Blackbox } from "./(components)/Blackbox/Blackbox";
 import { useProductStore } from "./productStore";
 import { Button } from "@/app/shared_components/Button/Button";
 import { Device, useDeviceStore } from "@/app/shared_components/LayoutPage/DeviceStore";
-
-import "./product.scss";
 import { sleep } from "@/lib/sleep";
 import { useCartStore } from "../../cart/cartStore";
-import { Spinner } from "@/assets/Spinner/Spinner";
 import { useProductsStore } from "../../(catalog)/productsStore";
 import { useShallow } from "zustand/react/shallow";
+
+import "./product.scss";
 
 interface Props {
   params: {

@@ -4,13 +4,15 @@ import { LayoutPage } from "@/app/shared_components/LayoutPage/LayoutPage";
 import { useCartStore } from "./cartStore";
 import { useProductsStore } from "../(catalog)/productsStore";
 import { useEffect, useMemo, useRef, useState } from "react";
-import "./Cart.scss";
 import { Price } from "./components/Price";
 import { Quantity } from "./components/Quantity/Quantity";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { getProductById } from "@/app/REST/Products";
-import { Product } from "@/app/model/Product";
+import { Button } from "@/app/shared_components/Button/Button";
+import { createCheckout } from "@/app/REST/Checkout";
+import { PaymentMetadata } from "@/app/Type/PaymentInfo";
+
+import "./Cart.scss";
 
 const Cart: React.FC = () => {
   const { products: cartProducts } = useCartStore((state) => state);
@@ -57,7 +59,6 @@ const Cart: React.FC = () => {
         realPrice = product.price - (product.price * product.discountPercentage) / 100;
         strikePrice = product.price;
       }
-      console.log("realPrice", realPrice, "strikePrice", strikePrice, "quantity", cartProduct.quantity);
       const sumRealPrice = realPrice * cartProduct.quantity;
       const sumStrikePrice = strikePrice * cartProduct.quantity;
       totalRealPrice.current += sumRealPrice;
@@ -74,8 +75,6 @@ const Cart: React.FC = () => {
     });
   }, [cartProducts, products]);
 
-  console.log("cartProducts", cartProducts);
-  console.log("loading", loading);
   if (cartProducts.length === 0 && !loading) {
     return (
       <LayoutPage className="cart" loading={loading} seotitle="Cart">
@@ -84,6 +83,35 @@ const Cart: React.FC = () => {
       </LayoutPage>
     );
   }
+
+  const onClickPaynow = async () => {
+    const req: PaymentMetadata[] = cartProductsDetails.map((cartProduct) => {
+      return {
+        title: cartProduct.title as string,
+        id: cartProduct.id!,
+        quantity: cartProduct.quantity,
+        pricePerItem: Number(cartProduct.realPrice),
+      };
+    });
+    const resp = await createCheckout({
+      items: req,
+      total: totalRealPrice.current,
+    });
+
+    console.log(resp);
+    // save to local storage
+    let paymentListStr = localStorage.getItem("paymentList");
+    let paymentList = [];
+    if (!paymentListStr) {
+      localStorage.setItem("paymentList", JSON.stringify([]));
+    } else {
+      paymentList = JSON.parse(paymentListStr);
+    }
+    paymentList.push(resp);
+    localStorage.setItem("paymentList", JSON.stringify(paymentList));
+
+    return true;
+  };
 
   return (
     <LayoutPage className="cart" loading={loading} seotitle="Cart">
@@ -122,6 +150,13 @@ const Cart: React.FC = () => {
         <section className="summary">
           <h2>Cart Summary</h2>
           <Price className="total-price" realPrice={totalRealPrice.current.toString()} strikePrice={totalStrikePrice.current.toString()} />
+          <ul style={{ margin: "10px 0" }}>
+            <li>All Payment will use default test card</li>
+            <li>There is no need to fill user credit card here</li>
+          </ul>
+          <Button async onClick={onClickPaynow} type="primary">
+            Pay Now
+          </Button>
         </section>
       </div>
     </LayoutPage>

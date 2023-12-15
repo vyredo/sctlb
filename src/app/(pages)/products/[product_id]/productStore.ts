@@ -1,4 +1,4 @@
-import { Product } from "@/app/model/Product";
+import { Product } from "@/app/Type/Product";
 import { create } from "zustand";
 
 interface ProductStoreState {

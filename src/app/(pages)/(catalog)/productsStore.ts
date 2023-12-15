@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Product } from "../../model/Product";
+import { Product } from "../../Type/Product";
 import { useShallow } from "zustand/react/shallow";
 import { products } from "@/mock/products";
 
