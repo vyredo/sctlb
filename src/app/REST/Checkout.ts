@@ -9,15 +9,31 @@ export const createCheckout = async (body: PaymentInfo): Promise<CreateCheckoutR
   }).then((res) => res.json());
 };
 
-export const getPaymentsStatus = async (ids: string[]): Promise<Array<PaymentInfo> | undefined> => {
+export type GetPaymentsStatusResponse = Array<{
+  id: string;
+  status: string;
+  total: number;
+  items: {
+    id: string;
+    title: string;
+    pricePerItem: number;
+    quantity: number;
+  }[];
+}>;
+export const getPaymentsStatus = async (params: { response: { id: string } }[]): Promise<GetPaymentsStatusResponse | undefined> => {
   try {
     // should use all settled in production
-    const list = await Promise.all(
-      ids.map((id: string) => {
-        return fetch("/api/checkout?id=" + id).then((res) => res.json());
-      })
-    );
-
+    const arr = params.map(({ response: { id } }) => {
+      return fetch("/api/checkout?id=" + id).then((res) => res.json());
+    });
+    const list = (await Promise.all(arr))
+      .map((res) => res.response)
+      .map((detail) => ({
+        id: detail.id,
+        status: detail.status,
+        total: detail.amount,
+        items: JSON.parse(detail.metadata.data),
+      }));
     return list;
   } catch (err) {
     console.error;

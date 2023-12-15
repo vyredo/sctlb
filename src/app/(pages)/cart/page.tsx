@@ -11,6 +11,7 @@ import { getProductById } from "@/app/REST/Products";
 import { Button } from "@/app/shared_components/Button/Button";
 import { createCheckout } from "@/app/REST/Checkout";
 import { PaymentMetadata } from "@/app/Type/PaymentInfo";
+import { useRouter } from "next/navigation";
 
 import "./Cart.scss";
 
@@ -18,7 +19,7 @@ const Cart: React.FC = () => {
   const { products: cartProducts } = useCartStore((state) => state);
   const { products, addProduct } = useProductsStore((state) => state);
   const [loading, setLoading] = useState(true);
-
+  const router = useRouter();
   useEffect(() => {
     // check if products has been loaded, if not fetch
     async function checkProducts() {
@@ -108,8 +109,10 @@ const Cart: React.FC = () => {
       paymentList = JSON.parse(paymentListStr);
     }
     paymentList.push(resp);
+    // filter empty object
+    paymentList = paymentList.filter((p: any) => Object.keys(p).length !== 0);
     localStorage.setItem("paymentList", JSON.stringify(paymentList));
-
+    router.push("/payments");
     return true;
   };
 

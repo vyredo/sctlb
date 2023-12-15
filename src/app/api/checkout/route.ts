@@ -9,9 +9,11 @@ const secret = process.env.STRIPE_SECRET_KEY as string;
 const stripe = new Stripe(secret);
 
 export async function GET(req: NextRequest) {
-  const urlSearchParams = new URLSearchParams(req.url);
+  const urlSearchParams = new URLSearchParams(req.url.split("?")[1]);
+  console.log("GET REQUEST", urlSearchParams);
   const id = urlSearchParams.get("id") as string;
 
+  console.log("what is id", id, req.url);
   // "pi_3OKe3TBIlFOPTHcl02S4nriQ";
   const stripe = new Stripe(secret);
   let response;
@@ -43,12 +45,14 @@ async function chargeWithTestAccount(amount: number, metadata: Record<string, an
 export async function POST(req: NextRequest) {
   // @ts-ignore the type failed on next@14
   const body = await req.json();
-  const { amount, metadata } = body;
+  const { total, items } = body;
   try {
-    const _amt = Number(amount);
+    const _amt = Number(total.toFixed(2)) * 100;
     if (_amt < 0) throw new Error("Amount must be greater than 0");
     if (isNaN(_amt)) throw new Error("Amount must be a number");
-    const response = await chargeWithTestAccount(_amt, metadata);
+    const response = await chargeWithTestAccount(_amt, {
+      data: JSON.stringify(items),
+    });
     return NextResponse.json({
       response: {
         id: response.id,

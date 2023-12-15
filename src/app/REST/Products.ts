@@ -1,4 +1,3 @@
-import { products } from "../../mock/products";
 import { Product } from "../Type/Product";
 const chairImages = [
   "https://images.secretlab.co/turntable/tr:n-w_1500/R22PU-Stealth",
@@ -21,23 +20,28 @@ interface GetProductResponse {
   limit: number;
 }
 export const getProducts = async (opt = new GetProductRequest()): Promise<GetProductResponse> => {
-  const { skip, limit } = opt;
+  try {
+    const { skip, limit } = opt;
+    const products = (await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`).then((res) => res.json())) as { products: Product[] };
 
-  // adding imagesTurntable for turntable animation
-  for (let i = 1; i <= 12; i++) {
-    products.products.forEach((p) => {
-      // override type of products to become Product[]
-      if (!(p as Product)["imagesTurntable"]) {
-        (p as Product)["imagesTurntable"] = [];
-      }
-      // pad 0 to the left of i
-      const num = i.toString().padStart(2, "0");
-      const randomTurntableImage = chairImages[Math.floor(Math.random() * chairImages.length)];
-      (p as Product)["imagesTurntable"].push(`${randomTurntableImage}_${num}.jpg`);
-    });
+    // adding imagesTurntable for turntable animation
+    for (let i = 1; i <= 12; i++) {
+      products.products.forEach((p) => {
+        if (!p["imagesTurntable"]) {
+          p["imagesTurntable"] = [];
+        }
+        // pad 0 to the left of i
+        const num = i.toString().padStart(2, "0");
+        const randomTurntableImage = chairImages[Math.floor(Math.random() * chairImages.length)];
+        p["imagesTurntable"].push(`${randomTurntableImage}_${num}.jpg`);
+      });
+    }
+
+    return products as GetProductResponse;
+  } catch (error) {
+    console.log(error);
+    throw new Error(error as any);
   }
-
-  return products as GetProductResponse;
 };
 
 export const getProductById = async (id: string): Promise<Product | null> => {
@@ -46,8 +50,7 @@ export const getProductById = async (id: string): Promise<Product | null> => {
     if (isNaN(_id)) {
       throw new Error("Invalid id");
     }
-
-    const product = products.products.find((p) => p.id === _id) as Product;
+    const product = (await fetch(`https://dummyjson.com/products/${id}`).then((res) => res.json())) as Product;
     if (!product) {
       throw new Error("Product not found");
     }

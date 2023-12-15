@@ -21,6 +21,9 @@ export const Header: FC<Props> = () => {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="header__logo" src={logoUrl} alt="logo" />
         </Link>
+        <Link href="/payments">
+          <div>Payments</div>
+        </Link>
         <Link className="cart" href="/cart">
           <CartSVG amt={cartQuantity} />
         </Link>

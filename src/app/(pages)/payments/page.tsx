@@ -2,14 +2,13 @@
 
 import { LayoutPage } from "@/app/shared_components/LayoutPage/LayoutPage";
 import React, { useEffect, useState } from "react";
-import { PaymentInfo } from "@/app/Type/PaymentInfo";
-import { getPaymentsStatus } from "@/app/REST/Checkout";
+import { GetPaymentsStatusResponse, getPaymentsStatus } from "@/app/REST/Checkout";
 
 import "./payments.scss";
 
 export default function Payments() {
   const [loading, setLoading] = useState(true);
-  const [list, setList] = useState<Array<PaymentInfo>>([]);
+  const [list, setList] = useState<GetPaymentsStatusResponse>([]);
 
   useEffect(() => {
     async function onmount() {
@@ -20,6 +19,7 @@ export default function Payments() {
       setLoading(true);
       const paymentList = JSON.parse(paymentListStr);
       const list = await getPaymentsStatus(paymentList);
+      console.log(list);
       if (Array.isArray(list)) {
         setList(list);
       }
@@ -28,6 +28,7 @@ export default function Payments() {
     onmount();
   }, []);
 
+  console.log(list);
   return (
     <LayoutPage className="payments" seotitle={"payments"} loading={loading}>
       <h1>Payments</h1>
@@ -48,7 +49,7 @@ export default function Payments() {
 
             <div className="totalPrice">
               <label>Total</label>
-              <span>${l.total}</span>
+              <span>${l.total / 100}</span>
             </div>
           </div>
         );
