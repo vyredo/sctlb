@@ -5,7 +5,7 @@
 import React, { useCallback, useEffect } from "react";
 import "./Blackbox.css";
 import { create } from "zustand";
-import { FullscreenSVG } from "@/assets/fullscreen";
+import { FullscreenSVG } from "@/assets/FullscreenSVG";
 
 interface BlackboxState {
   images: string[];

@@ -3,19 +3,18 @@
 import React, { useEffect } from "react";
 import { getProductById } from "@/app/REST/Products";
 import { Product } from "@/app/ZustandStore/model/Product";
-import { Header } from "@/app/components/Header";
+import { Header } from "@/app/shared_components/Header/Header";
 import { ProductImage } from "./(components)/ProductImage";
-import ImageCarousel from "./(components)/ImageCarousell/ImageCarousell";
-import { LayoutPage } from "@/app/components/LayoutPage/LayoutPage";
+import ImageCarousel from "./(components)/ImageCarousell/ImageCarousel";
+import { LayoutPage } from "@/app/shared_components/LayoutPage/LayoutPage";
 import { Title } from "./(components)/Title";
-import { Device, useDeviceStore } from "@/app/ZustandStore/DeviceStore";
 import { useRouter } from "next/navigation";
 import { Blackbox } from "./(components)/Blackbox/Blackbox";
-import { create } from "zustand";
 import { useProductStore } from "./productStore";
+import { Button } from "@/app/shared_components/Button/Button";
+import { Device, useDeviceStore } from "@/app/shared_components/LayoutPage/DeviceStore";
 
 import "./product.css";
-import { Button } from "@/app/components/Button/Button";
 
 interface Props {
   params: {
@@ -53,7 +52,7 @@ export default function Product({ params: { product_id } }: Props) {
   const imagePath = product.imageSequence?.[0]?.replace("_01.jpg", "");
   const images = [product.imageSequence?.[0], ...product.images];
 
-  console.log("numberOfProductToCart", numberOfProductToCart);
+  console.log("numberOfProductToCart", numberOfProductToCart, product);
   let realPrice = product.price;
   let strikePrice = "";
   if (product.discountPercentage) {

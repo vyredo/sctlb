@@ -1,0 +1,22 @@
+.cart-container {
+  width: 100%;
+  min-width: 40px;
+  position: relative;
+  padding-top: 10px;
+  padding-right: 10px;
+  .amt {
+    /* use css variable color */
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}

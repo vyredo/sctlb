@@ -1,0 +1,17 @@
+nav.header-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .content {
+    padding: 4px 32px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #e0e0e0;
+    max-width: 1280px;
+  }
+}

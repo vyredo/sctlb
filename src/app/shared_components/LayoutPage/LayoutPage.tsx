@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode, useEffect, useState } from "react";
-import { Device, useDeviceStore } from "../../ZustandStore/DeviceStore";
+import { Device, useDeviceStore } from "./DeviceStore";
 import "./LayoutPage.css";
 
 interface LayoutPageProps {
