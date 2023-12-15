@@ -3,10 +3,12 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { Device, useDeviceStore } from "./DeviceStore";
 import { Header } from "../Header/Header";
 import "./LayoutPage.css";
+import { Spinner } from "@/assets/Spinner/Spinner";
 
 interface LayoutPageProps {
   children: ReactNode;
   className: string;
+  loading?: boolean;
 }
 
 /**
@@ -19,7 +21,7 @@ const MAX_WIDTH = {
   TABLET: 768,
 };
 
-export const LayoutPage: React.FC<LayoutPageProps> = ({ children, className }) => {
+export const LayoutPage: React.FC<LayoutPageProps> = ({ children, className, loading }) => {
   const { device, setDevice } = useDeviceStore((state) => state);
 
   useEffect(() => {
@@ -44,7 +46,12 @@ export const LayoutPage: React.FC<LayoutPageProps> = ({ children, className }) =
   return (
     <main className={_className}>
       <Header />
-      {children}
+      {loading && (
+        <div className="loading-container">
+          <Spinner />
+        </div>
+      )}
+      {!loading && children}
     </main>
   );
 };

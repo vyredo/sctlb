@@ -3,15 +3,49 @@
 import { LayoutPage } from "@/app/shared_components/LayoutPage/LayoutPage";
 import { useCartStore } from "./cartStore";
 import { useProductsStore } from "../(catalog)/productsStore";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./Cart.css";
 import { Price } from "./components/Price";
 import { Quantity } from "./components/Quantity/Quantity";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { getProductById } from "@/app/REST/Products";
+import { Product } from "@/app/model/Product";
 
 const Cart: React.FC = () => {
   const { products: cartProducts } = useCartStore((state) => state);
-  const { products } = useProductsStore((state) => state);
+  const { products, addProduct } = useProductsStore((state) => state);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // if no products in  cart, redirect to home page
+    if (cartProducts.length === 0) {
+      window.location.href = "/";
+    }
+  }, [cartProducts.length]);
+
+  useEffect(() => {
+    // check if products has been loaded, if not fetch
+    async function checkProducts() {
+      setLoading(true);
+
+      //  use await to simplify the fetch, optimize later using Promise.allSettled
+      for (const cartProduct of cartProducts) {
+        if (!products.find((product) => product.id === cartProduct.id)) {
+          try {
+            setLoading(true);
+            const p = await getProductById(cartProduct.id.toString());
+            if (!p) continue;
+            addProduct(p);
+            setLoading(false);
+          } catch (error) {}
+        }
+        setLoading(false);
+      }
+    }
+
+    checkProducts();
+  }, [addProduct, cartProducts, products]);
 
   let totalRealPrice = useRef(0);
   let totalStrikePrice = useRef(0);
@@ -24,20 +58,20 @@ const Cart: React.FC = () => {
     return cartProducts.map((cartProduct) => {
       const product = products.find((product) => product.id === cartProduct.id);
       let realPrice = product?.price ?? 0;
-      let strikePrice = "";
+      let strikePrice = 0;
       if (product?.discountPercentage) {
         realPrice = product.price - (product.price * product.discountPercentage) / 100;
-        strikePrice = product.price.toString();
+        strikePrice = product.price;
       }
-
-      totalRealPrice.current += realPrice;
-      totalStrikePrice.current += Number(strikePrice);
-      return { ...product, quantity: cartProduct.quantity, realPrice: realPrice.toString(), strikePrice };
+      console.log("realPrice", realPrice, "strikePrice", strikePrice, "quantity", cartProduct.quantity);
+      totalRealPrice.current += Number(realPrice * cartProduct.quantity);
+      totalStrikePrice.current += Number(strikePrice * cartProduct.quantity);
+      return { ...product, quantity: cartProduct.quantity, realPrice: realPrice.toString(), strikePrice: strikePrice.toString() };
     });
   }, [cartProducts, products]);
-  console.log(cartProductsDetails);
+
   return (
-    <LayoutPage className="cart">
+    <LayoutPage className="cart" loading={loading}>
       <h1>Shopping Cart</h1>
 
       <div className="detail">
@@ -63,7 +97,7 @@ const Cart: React.FC = () => {
                     </Link>
                     <Price className="product-price" realPrice={cartProduct.realPrice} strikePrice={cartProduct.strikePrice} />
                     <Quantity productId={cartProduct.id!} />
-                    <Price className="total-price" realPrice={cartProduct.realPrice} strikePrice={cartProduct.strikePrice} />
+                    <Price className="total-price" realPrice={totalRealPrice.current.toString()} strikePrice={totalStrikePrice.current.toString()} />
                   </div>
                 </div>
               );

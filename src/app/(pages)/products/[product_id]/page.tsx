@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getProductById } from "@/app/REST/Products";
 import { Product } from "@/app/model/Product";
 import { Header } from "@/app/shared_components/Header/Header";
@@ -31,20 +31,24 @@ export default function Product({ params: { product_id } }: Props) {
   const router = useRouter();
   if (!product_id) router.push("/");
 
+  const [loading, setLoading] = useState(true);
   const { device } = useDeviceStore((state) => state);
   const { product, viewProductById, unviewProduct, incNumberProduct, decNumberProduct, numberOfProductToCart } = useProductStore((state) => state);
 
   // update products store without rerendering this component
-  const { addProducts } = useProductsStore(useShallow((state) => state));
-  if (product) addProducts(product);
+  const { addProduct } = useProductsStore(useShallow((state) => state));
+  if (product) addProduct(product);
 
   useEffect(() => {
     async function getproduct() {
+      setLoading(true);
+      await sleep(1000);
       try {
         const product = await getProductById(product_id);
         if (!product) throw new Error("Product not found");
         viewProductById(product);
       } catch (error) {}
+      setLoading(false);
     }
     getproduct();
 
@@ -62,8 +66,16 @@ export default function Product({ params: { product_id } }: Props) {
     add(id);
   }, [add, product_id]);
 
+  if (loading) {
+    return (
+      <LayoutPage className="product" loading={loading}>
+        <></>
+      </LayoutPage>
+    );
+  }
+
   if (!product) {
-    return <Spinner />;
+    return <div>Product not found</div>;
   }
 
   const imagePath = product.imagesTurntable?.[0]?.replace("_01.jpg", "");

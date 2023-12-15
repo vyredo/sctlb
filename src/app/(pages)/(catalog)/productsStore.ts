@@ -7,7 +7,8 @@ interface ProductsStoreState {
   products: Product[];
   updateProducts: (p: Product) => void;
   deleteProducts: (p: Product) => void;
-  addProducts: (p: Product) => void;
+  addProduct: (p: Product) => void;
+  addProducts: (p: Product[]) => void;
   clearProducts: () => void;
 }
 
@@ -24,7 +25,7 @@ export const useProductsStore = create<ProductsStoreState>()((set, get) => ({
       return { products: state.products };
     }),
   deleteProducts: (p: Product) => set((state) => ({ products: state.products.filter((x) => x.id !== p.id) })),
-  addProducts: (p: Product) => {
+  addProduct: (p: Product) => {
     // upsert
     const { products, updateProducts } = get();
     const index = products.findIndex((x) => x?.id === p.id);
@@ -34,5 +35,6 @@ export const useProductsStore = create<ProductsStoreState>()((set, get) => ({
       updateProducts(p);
     }
   },
+  addProducts: (p: Product[]) => set((state) => ({ products: [...state.products, ...p] })),
   clearProducts: () => set({ products: [] }, true),
 }));

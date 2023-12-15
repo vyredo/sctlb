@@ -8,6 +8,15 @@ main.desktop,
 main.tablet,
 main.mobile {
   padding: 70px 8px 30px 8px;
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+  }
 }
 
 main.desktop {
