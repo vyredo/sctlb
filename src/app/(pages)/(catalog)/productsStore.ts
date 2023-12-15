@@ -1,6 +1,7 @@
 import { create } from "zustand";
-import { Product } from "./model/Product";
+import { Product } from "../../model/Product";
 import { useShallow } from "zustand/react/shallow";
+import { products } from "@/mock/products";
 
 interface ProductsStoreState {
   products: Product[];
@@ -11,7 +12,7 @@ interface ProductsStoreState {
 }
 
 // todo: write unit tes for this
-export const useProductsStore = create<ProductsStoreState>()((set) => ({
+export const useProductsStore = create<ProductsStoreState>()((set, get) => ({
   products: [],
   updateProducts: (p: Product) =>
     set((state) => {
@@ -23,6 +24,15 @@ export const useProductsStore = create<ProductsStoreState>()((set) => ({
       return { products: state.products };
     }),
   deleteProducts: (p: Product) => set((state) => ({ products: state.products.filter((x) => x.id !== p.id) })),
-  addProducts: (p: Product) => set((state) => ({ products: [...state.products, p] })),
+  addProducts: (p: Product) => {
+    // upsert
+    const { products, updateProducts } = get();
+    const index = products.findIndex((x) => x?.id === p.id);
+    if (index === -1) {
+      set((state) => ({ products: [...state.products, p] }));
+    } else {
+      updateProducts(p);
+    }
+  },
   clearProducts: () => set({ products: [] }, true),
 }));

@@ -1,5 +1,5 @@
-import { products } from "../mock/products";
-import { Product } from "../ZustandStore/model/Product";
+import { products } from "../../mock/products";
+import { Product } from "../model/Product";
 const chairImage = "https://images.secretlab.co/turntable/tr:n-w_1500/R22PU-Stealth";
 
 // use class to define default value
@@ -17,16 +17,16 @@ interface GetProductResponse {
 export const getProducts = async (opt = new GetProductRequest()): Promise<GetProductResponse> => {
   const { skip, limit } = opt;
 
-  // adding imageSequence for turntable animation
+  // adding imagesTurntable for turntable animation
   for (let i = 1; i <= 12; i++) {
     products.products.forEach((p) => {
       // override type of products to become Product[]
-      if (!(p as Product)["imageSequence"]) {
-        (p as Product)["imageSequence"] = [];
+      if (!(p as Product)["imagesTurntable"]) {
+        (p as Product)["imagesTurntable"] = [];
       }
       // pad 0 to the left of i
       const num = i.toString().padStart(2, "0");
-      (p as Product)["imageSequence"].push(`${chairImage}_${num}.jpg`);
+      (p as Product)["imagesTurntable"].push(`${chairImage}_${num}.jpg`);
     });
   }
 
@@ -45,18 +45,18 @@ export const getProductById = async (id: string): Promise<Product | null> => {
       throw new Error("Product not found");
     }
 
-    if (!product.imageSequence) {
-      product.imageSequence = [];
+    if (!product.imagesTurntable) {
+      product.imagesTurntable = [];
     }
 
-    if (product.imageSequence.length === 0) {
-      // adding imageSequence for turntable animation
+    if (product.imagesTurntable.length === 0) {
+      // adding imagesTurntable for turntable animation
       for (let i = 1; i <= 12; i++) {
         // override type of products to become Product[]
 
         // pad 0 to the left of i
         const num = i.toString().padStart(2, "0");
-        (product as Product)["imageSequence"].push(`${chairImage}_${num}.jpg`);
+        (product as Product)["imagesTurntable"].push(`${chairImage}_${num}.jpg`);
       }
     }
 

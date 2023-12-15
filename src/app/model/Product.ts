@@ -10,5 +10,5 @@ export interface Product {
   category: string;
   thumbnail: string;
   images: string[];
-  imageSequence: string[];
+  imagesTurntable: string[];
 }

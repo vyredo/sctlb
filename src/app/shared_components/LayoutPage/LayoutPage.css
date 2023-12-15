@@ -7,7 +7,7 @@ body {
 main.desktop,
 main.tablet,
 main.mobile {
-  padding-top: 60px;
+  padding: 70px 8px 30px 8px;
 }
 
 main.desktop {

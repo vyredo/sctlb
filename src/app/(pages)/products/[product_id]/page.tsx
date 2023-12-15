@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { getProductById } from "@/app/REST/Products";
-import { Product } from "@/app/ZustandStore/model/Product";
+import { Product } from "@/app/model/Product";
 import { Header } from "@/app/shared_components/Header/Header";
 import { ProductImage } from "./(components)/ProductImage";
 import ImageCarousel from "./(components)/ImageCarousell/ImageCarousel";
@@ -15,6 +15,11 @@ import { Button } from "@/app/shared_components/Button/Button";
 import { Device, useDeviceStore } from "@/app/shared_components/LayoutPage/DeviceStore";
 
 import "./product.css";
+import { sleep } from "@/lib/sleep";
+import { useCartStore } from "../../cart/cartStore";
+import { Spinner } from "@/assets/Spinner/Spinner";
+import { useProductsStore } from "../../(catalog)/productsStore";
+import { useShallow } from "zustand/react/shallow";
 
 interface Props {
   params: {
@@ -28,6 +33,10 @@ export default function Product({ params: { product_id } }: Props) {
 
   const { device } = useDeviceStore((state) => state);
   const { product, viewProductById, unviewProduct, incNumberProduct, decNumberProduct, numberOfProductToCart } = useProductStore((state) => state);
+
+  // update products store without rerendering this component
+  const { addProducts } = useProductsStore(useShallow((state) => state));
+  if (product) addProducts(product);
 
   useEffect(() => {
     async function getproduct() {
@@ -44,25 +53,32 @@ export default function Product({ params: { product_id } }: Props) {
     };
   }, [product_id, router, unviewProduct, viewProductById]);
 
+  const { add } = useCartStore((state) => state);
+  const handleAddToCart = useCallback(async () => {
+    // simulate server call
+    await sleep(1000);
+    const id = Number(product_id);
+    if (!id) return;
+    add(id);
+  }, [add, product_id]);
+
   if (!product) {
-    // todo: loading animation
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
-  const imagePath = product.imageSequence?.[0]?.replace("_01.jpg", "");
-  const images = [product.imageSequence?.[0], ...product.images];
+  const imagePath = product.imagesTurntable?.[0]?.replace("_01.jpg", "");
+  const images = [product.imagesTurntable?.[0], ...product.images];
 
-  console.log("numberOfProductToCart", numberOfProductToCart, product);
   let realPrice = product.price;
   let strikePrice = "";
   if (product.discountPercentage) {
     realPrice = product.price - (product.price * product.discountPercentage) / 100;
     strikePrice = product.price.toString();
   }
+
   return (
     <LayoutPage className="product">
       <Blackbox images={images} />
-      <Header />
 
       <section className="left">
         {device === Device.Mobile && <Title product={product} />}
@@ -87,14 +103,14 @@ export default function Product({ params: { product_id } }: Props) {
             </div>
           </div>
         </div>
-        <Button async className="addcart">
+        <Button async className="addcart" onClick={handleAddToCart}>
           <div>Add to Cart</div>
         </Button>
         <hr />
         <div className="description">
           <div className="label">Features</div>
           <ul>
-            {product.description.split(", ").map((desc) => {
+            {product.description.split(", ").map((desc: string) => {
               return <li key={desc}>{desc}</li>;
             })}
           </ul>

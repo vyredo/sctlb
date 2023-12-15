@@ -1,5 +1,6 @@
 import React from "react";
 import "./CartSVG.css";
+
 export const CartSVG: React.FC<{ onClick?: () => void; amt: number }> = ({ onClick, amt }) => {
   return (
     <div className="cart-container">

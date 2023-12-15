@@ -1,5 +1,6 @@
 import React from "react";
 import "./Button.css";
+import { Spinner } from "@/assets/Spinner/Spinner";
 
 interface Props {
   children: React.ReactNode;
@@ -7,9 +8,11 @@ interface Props {
   onClick?: () => void;
   disabled?: boolean;
   async?: boolean;
+  type?: "primary" | "secondary";
 }
 
-export const Button: React.FC<Props> = ({ children, className, onClick, disabled, async }) => {
+export const Button: React.FC<Props> = ({ children, className, onClick, disabled, async, type }) => {
+  let btnType = type ?? "primary";
   const [isLoading, setIsLoading] = React.useState(false);
 
   const handleClick = async () => {
@@ -22,9 +25,15 @@ export const Button: React.FC<Props> = ({ children, className, onClick, disabled
     }
   };
 
+  if (btnType === "primary") {
+    className += " primary";
+  } else if (btnType === "secondary") {
+    className += " secondary";
+  }
+
   return (
-    <button className={`button ${className}  ${disabled ? "disabled" : ""}`} onClick={handleClick}>
-      {isLoading && <div className="loader"></div>}
+    <button className={`sctlb-button ${className}  ${disabled ? "disabled" : ""}`} onClick={handleClick}>
+      {isLoading && <Spinner />}
       {!isLoading && children}
     </button>
   );

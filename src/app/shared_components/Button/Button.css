@@ -1,0 +1,11 @@
+.sctlb-button {
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 16px;
+  padding: 8px 16px;
+
+  &.primary {
+    color: white;
+    background-color: red;
+  }
+}

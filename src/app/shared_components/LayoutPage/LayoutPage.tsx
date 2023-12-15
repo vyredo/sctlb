@@ -1,6 +1,7 @@
 "use client";
 import React, { ReactNode, useEffect, useState } from "react";
 import { Device, useDeviceStore } from "./DeviceStore";
+import { Header } from "../Header/Header";
 import "./LayoutPage.css";
 
 interface LayoutPageProps {
@@ -40,5 +41,10 @@ export const LayoutPage: React.FC<LayoutPageProps> = ({ children, className }) =
 
   const _className = `${className} ${device}`;
 
-  return <main className={_className}>{children}</main>;
+  return (
+    <main className={_className}>
+      <Header />
+      {children}
+    </main>
+  );
 };

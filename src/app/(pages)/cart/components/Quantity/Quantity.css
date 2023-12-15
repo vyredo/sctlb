@@ -1,0 +1,32 @@
+.quantity-container {
+  padding: 0 8px;
+
+  .action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+  }
+
+  .btn {
+    background-color: grey;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 3px;
+  }
+
+  .remove {
+    flex: 1;
+    color: grey;
+    cursor: pointer;
+  }
+}
