@@ -1,5 +1,5 @@
 "use client";
-import { throttle } from "@/lib/debounce";
+import { throttle } from "@/lib/throttle";
 // @ts-ignore
 import Image from "next/future/image";
 import React, { useEffect, useRef, useState } from "react";

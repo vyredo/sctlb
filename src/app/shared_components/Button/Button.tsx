@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.css";
+import "./Button.scss";
 import { Spinner } from "@/assets/Spinner/Spinner";
 
 interface Props {

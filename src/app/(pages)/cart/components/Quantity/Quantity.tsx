@@ -1,6 +1,6 @@
 import React from "react";
 import { useCartStore } from "../../cartStore";
-import "./Quantity.css";
+import "./Quantity.scss";
 
 export const Quantity: React.FC<{ productId: number }> = ({ productId }) => {
   const { products, add, removeOneById, removeAllById } = useCartStore();

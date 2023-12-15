@@ -3,7 +3,7 @@
 }
 
 import React, { useCallback, useEffect } from "react";
-import "./Blackbox.css";
+import "./Blackbox.scss";
 import { create } from "zustand";
 import { FullscreenSVG } from "@/assets/FullscreenSVG";
 

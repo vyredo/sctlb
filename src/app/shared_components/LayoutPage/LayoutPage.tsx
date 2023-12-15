@@ -2,13 +2,14 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { Device, useDeviceStore } from "./DeviceStore";
 import { Header } from "../Header/Header";
-import "./LayoutPage.css";
+import "./LayoutPage.scss";
 import { Spinner } from "@/assets/Spinner/Spinner";
 
 interface LayoutPageProps {
   children: ReactNode;
   className: string;
   loading?: boolean;
+  seotitle: string;
 }
 
 /**
@@ -21,10 +22,12 @@ const MAX_WIDTH = {
   TABLET: 768,
 };
 
-export const LayoutPage: React.FC<LayoutPageProps> = ({ children, className, loading }) => {
+export const LayoutPage: React.FC<LayoutPageProps> = ({ children, className, loading, seotitle }) => {
   const { device, setDevice } = useDeviceStore((state) => state);
 
   useEffect(() => {
+    document.title = seotitle;
+
     const handleResize = () => {
       if (window.innerWidth > MAX_WIDTH.TABLET) {
         setDevice(Device.Desktop);
@@ -39,7 +42,7 @@ export const LayoutPage: React.FC<LayoutPageProps> = ({ children, className, loa
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [setDevice]);
+  }, [seotitle, setDevice]);
 
   const _className = `${className} ${device}`;
 

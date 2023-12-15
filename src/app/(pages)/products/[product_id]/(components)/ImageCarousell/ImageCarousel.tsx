@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC, useState } from "react";
-import "./ImageCarousel.css";
+import "./ImageCarousel.scss";
 import { useBlackboxStore } from "../Blackbox/Blackbox";
 
 const ImageCarousel: FC<{ images: any[] }> = ({ images }) => {

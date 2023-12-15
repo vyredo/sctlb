@@ -1,5 +1,5 @@
 import React from "react";
-import "./CartSVG.css";
+import "./CartSVG.scss";
 
 export const CartSVG: React.FC<{ onClick?: () => void; amt: number }> = ({ onClick, amt }) => {
   return (

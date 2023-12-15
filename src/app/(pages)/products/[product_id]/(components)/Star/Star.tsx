@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import "./Star.css";
+import "./Star.scss";
 
 export const Stars: FC<{ rating: number }> = ({ rating }) => {
   const percentage = rating * 20;

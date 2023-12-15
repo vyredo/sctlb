@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { useCartStore } from "@/app/(pages)/cart/cartStore";
 import { CartSVG } from "@/assets/CartSVG/CartSVG";
 
-import "./Header.css";
+import "./Header.scss";
 
 const logoUrl = "https://images.secretlab.co/theme/common/logo_secretlab_xmas.svg";
 

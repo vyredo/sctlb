@@ -1,6 +1,12 @@
 import { products } from "../../mock/products";
 import { Product } from "../model/Product";
-const chairImage = "https://images.secretlab.co/turntable/tr:n-w_1500/R22PU-Stealth";
+const chairImages = [
+  "https://images.secretlab.co/turntable/tr:n-w_1500/R22PU-Stealth",
+  "https://images.secretlab.co/turntable/tr:n-w_1500/R22SW-CnC",
+  "https://images.secretlab.co/turntable/tr:n-w_1500/R22SW-Blk3",
+  "https://images.secretlab.co/turntable/tr:n-w_1500/R22PU-Ash",
+  "https://images.secretlab.co/turntable/tr:n-w_1500/R22PU-Batman",
+];
 
 // use class to define default value
 class GetProductRequest {
@@ -26,7 +32,8 @@ export const getProducts = async (opt = new GetProductRequest()): Promise<GetPro
       }
       // pad 0 to the left of i
       const num = i.toString().padStart(2, "0");
-      (p as Product)["imagesTurntable"].push(`${chairImage}_${num}.jpg`);
+      const randomTurntableImage = chairImages[Math.floor(Math.random() * chairImages.length)];
+      (p as Product)["imagesTurntable"].push(`${randomTurntableImage}_${num}.jpg`);
     });
   }
 
@@ -56,7 +63,8 @@ export const getProductById = async (id: string): Promise<Product | null> => {
 
         // pad 0 to the left of i
         const num = i.toString().padStart(2, "0");
-        (product as Product)["imagesTurntable"].push(`${chairImage}_${num}.jpg`);
+        const randomTurntableImage = chairImages[Math.floor(Math.random() * chairImages.length)];
+        (product as Product)["imagesTurntable"].push(`${randomTurntableImage}_${num}.jpg`);
       }
     }
 

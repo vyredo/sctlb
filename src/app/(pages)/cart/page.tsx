@@ -4,7 +4,7 @@ import { LayoutPage } from "@/app/shared_components/LayoutPage/LayoutPage";
 import { useCartStore } from "./cartStore";
 import { useProductsStore } from "../(catalog)/productsStore";
 import { useEffect, useMemo, useRef, useState } from "react";
-import "./Cart.css";
+import "./Cart.scss";
 import { Price } from "./components/Price";
 import { Quantity } from "./components/Quantity/Quantity";
 import Link from "next/link";
@@ -18,13 +18,6 @@ const Cart: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // if no products in  cart, redirect to home page
-    if (cartProducts.length === 0) {
-      window.location.href = "/";
-    }
-  }, [cartProducts.length]);
-
-  useEffect(() => {
     // check if products has been loaded, if not fetch
     async function checkProducts() {
       setLoading(true);
@@ -35,13 +28,14 @@ const Cart: React.FC = () => {
           try {
             setLoading(true);
             const p = await getProductById(cartProduct.id.toString());
-            if (!p) continue;
-            addProduct(p);
+            if (p) {
+              addProduct(p);
+            }
             setLoading(false);
           } catch (error) {}
         }
-        setLoading(false);
       }
+      setLoading(false);
     }
 
     checkProducts();
@@ -64,14 +58,35 @@ const Cart: React.FC = () => {
         strikePrice = product.price;
       }
       console.log("realPrice", realPrice, "strikePrice", strikePrice, "quantity", cartProduct.quantity);
-      totalRealPrice.current += Number(realPrice * cartProduct.quantity);
-      totalStrikePrice.current += Number(strikePrice * cartProduct.quantity);
-      return { ...product, quantity: cartProduct.quantity, realPrice: realPrice.toString(), strikePrice: strikePrice.toString() };
+      const sumRealPrice = realPrice * cartProduct.quantity;
+      const sumStrikePrice = strikePrice * cartProduct.quantity;
+      totalRealPrice.current += sumRealPrice;
+      totalStrikePrice.current += sumStrikePrice;
+
+      return {
+        ...product,
+        quantity: cartProduct.quantity,
+        realPrice: realPrice.toString(),
+        strikePrice: strikePrice.toString(),
+        sumRealPrice: sumRealPrice.toString(),
+        sumStrikePrice: sumStrikePrice.toString(),
+      };
     });
   }, [cartProducts, products]);
 
+  console.log("cartProducts", cartProducts);
+  console.log("loading", loading);
+  if (cartProducts.length === 0 && !loading) {
+    return (
+      <LayoutPage className="cart" loading={loading} seotitle="Cart">
+        <h1>Shopping Cart</h1>
+        <div className="empty-cart">Your cart is empty</div>
+      </LayoutPage>
+    );
+  }
+
   return (
-    <LayoutPage className="cart" loading={loading}>
+    <LayoutPage className="cart" loading={loading} seotitle="Cart">
       <h1>Shopping Cart</h1>
 
       <div className="detail">
@@ -97,14 +112,17 @@ const Cart: React.FC = () => {
                     </Link>
                     <Price className="product-price" realPrice={cartProduct.realPrice} strikePrice={cartProduct.strikePrice} />
                     <Quantity productId={cartProduct.id!} />
-                    <Price className="total-price" realPrice={totalRealPrice.current.toString()} strikePrice={totalStrikePrice.current.toString()} />
+                    <Price className="total-price" realPrice={cartProduct.sumRealPrice} strikePrice={cartProduct.sumStrikePrice.toString()} />
                   </div>
                 </div>
               );
             })}
           </div>
         </section>
-        <section className="summary"></section>
+        <section className="summary">
+          <h2>Cart Summary</h2>
+          <Price className="total-price" realPrice={totalRealPrice.current.toString()} strikePrice={totalStrikePrice.current.toString()} />
+        </section>
       </div>
     </LayoutPage>
   );

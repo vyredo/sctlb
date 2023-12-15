@@ -14,7 +14,7 @@ import { useProductStore } from "./productStore";
 import { Button } from "@/app/shared_components/Button/Button";
 import { Device, useDeviceStore } from "@/app/shared_components/LayoutPage/DeviceStore";
 
-import "./product.css";
+import "./product.scss";
 import { sleep } from "@/lib/sleep";
 import { useCartStore } from "../../cart/cartStore";
 import { Spinner } from "@/assets/Spinner/Spinner";
@@ -68,7 +68,7 @@ export default function Product({ params: { product_id } }: Props) {
 
   if (loading) {
     return (
-      <LayoutPage className="product" loading={loading}>
+      <LayoutPage className="product" loading={loading} seotitle="product">
         <></>
       </LayoutPage>
     );
@@ -89,7 +89,7 @@ export default function Product({ params: { product_id } }: Props) {
   }
 
   return (
-    <LayoutPage className="product">
+    <LayoutPage className="product" seotitle={product.title}>
       <Blackbox images={images} />
 
       <section className="left">
