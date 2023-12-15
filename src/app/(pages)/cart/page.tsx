@@ -1,3 +1,5 @@
-export const Cart: React.FC = () => {
+const Cart: React.FC = () => {
   return <div>asdf</div>;
 };
+
+export default Cart;
