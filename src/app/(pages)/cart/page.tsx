@@ -7,6 +7,8 @@ import { useMemo, useRef } from "react";
 import "./Cart.css";
 import { Price } from "./components/Price";
 import { Quantity } from "./components/Quantity/Quantity";
+import Link from "next/link";
+
 const Cart: React.FC = () => {
   const { products: cartProducts } = useCartStore((state) => state);
   const { products } = useProductsStore((state) => state);
@@ -53,10 +55,12 @@ const Cart: React.FC = () => {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img className="img" src={cartProduct.thumbnail} alt="thumbnail" />
                   <div className="row-content">
-                    <div className="title">
-                      <div>{cartProduct.title}</div>
-                      <div>{cartProduct.brand}</div>
-                    </div>
+                    <Link href={`/products/${cartProduct.id}`}>
+                      <div className="title">
+                        <div>{cartProduct.title}</div>
+                        <div>{cartProduct.brand}</div>
+                      </div>
+                    </Link>
                     <Price className="product-price" realPrice={cartProduct.realPrice} strikePrice={cartProduct.strikePrice} />
                     <Quantity productId={cartProduct.id!} />
                     <Price className="total-price" realPrice={cartProduct.realPrice} strikePrice={cartProduct.strikePrice} />

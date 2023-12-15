@@ -1,7 +1,7 @@
 import { capitalize } from "@/lib/capitalize";
 import { Stars } from "./Star/Star";
 import React, { FC } from "react";
-import { Product } from "@/app/ZustandStore/model/Product";
+import { Product } from "@/app/model/Product";
 
 interface Props {
   product: Product;
