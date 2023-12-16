@@ -34,6 +34,16 @@ npm run test
 HTML coverage page can be view in
 `<root>/jest-coverage/index.html`
 
+## Tech Stack
+
+- NextJS
+- Scss
+- Typescript
+- State management library (Zustand)
+- Animation library (CSS Animation)
+- Payment (Stripe)
+- Testing (React-Testing-library) -> requires extra libraries to preprocess tsx
+
 ## Custom React Component
 
 - Infinite Loader
@@ -50,16 +60,6 @@ HTML coverage page can be view in
 - turntable images
 - star and rating bounces
 - cart shake
-
-## Tech Stack
-
-- NextJS
-- Scss
-- Typescript
-- State management library (Zustand)
-- Animation library (CSS Animation)
-- Payment (Stripe)
-- Testing (React-Testing-library) -> requires extra libraries to preprocess tsx
 
 <h4 id="why-css">Why CSS and not Tailwind for this task </h4>
 
