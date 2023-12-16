@@ -1,3 +1,8 @@
+## Endpoints
+
+- vercel: <a href="https://sctlb-vyredo.vercel.app/">`https://sctlb-vyredo.vercel.app/`</a>
+- github: <a href="https://github.com/vyredo/sctlb">`https://github.com/vyredo/sctlb`</a>
+
 ## Note
 
 Hey there! Task completed! 🎉
@@ -9,11 +14,6 @@ Hey there! Task completed! 🎉
   - [x] Integrate to a test payment gateway (Stripe payment)
   - [x] Unit test with report coverage, The test coverage can be improve in future
   - [x] try to follow all tech stack except tailwindcss, <a href="#why-css">reason why css</a>
-
-## Endpoints
-
-- github: <a href="https://github.com/vyredo/sctlb">`https://github.com/vyredo/sctlb`</a>
-- vercel: <a href="https://sctlb-vyredo.vercel.app/">`https://sctlb-vyredo.vercel.app/`</a>
 
 ## Tech Stack
 
