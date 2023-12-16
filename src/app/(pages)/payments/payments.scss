@@ -1,0 +1,46 @@
+.payments {
+  .row {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    box-shadow: 1px 2px 1px 1px #e0e0e0;
+    margin: 12px 0;
+
+    .left {
+      flex: 1;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 12px;
+
+      .items {
+        margin-bottom: 12px;
+        li {
+          margin: 2px;
+          span {
+            margin-left: 24px;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .middle {
+      flex: 1;
+      span {
+        font-size: 16px;
+        font-weight: 800;
+      }
+    }
+
+    .totalPrice {
+      min-width: 20%;
+      padding: 12px;
+      span {
+        color: green;
+        margin-left: 12px;
+      }
+    }
+  }
+}

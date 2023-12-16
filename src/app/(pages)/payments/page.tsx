@@ -35,16 +35,30 @@ export default function Payments() {
       {list.map((l, index) => {
         return (
           <div key={index} className="row">
-            {l.items.map((i, idx) => {
-              return (
-                <ul key={i.id + idx} className="items">
-                  <li>{i.title}</li>
-                  <li>{i.quantity}</li>
-                  <li>{i.pricePerItem}</li>
-                </ul>
-              );
-            })}
-
+            <div className="left">
+              {l.items.map((i, idx) => {
+                return (
+                  <ul key={i.id + idx} className="items">
+                    <li>
+                      <label>Title</label>
+                      <span className="title">{i.title}</span>
+                    </li>
+                    <li>
+                      <label>Quantity</label>
+                      <span className="quantity">{i.quantity}</span>
+                    </li>
+                    <li>
+                      <label>Price</label>
+                      <span className="price">{i.pricePerItem}</span>
+                    </li>
+                  </ul>
+                );
+              })}
+            </div>
+            <div className="middle">
+              <p>Payment Status</p>
+              <span>{l.status}</span>
+            </div>
             <div className="totalPrice">
               <label>Total</label>
               <span>${l.total / 100}</span>
