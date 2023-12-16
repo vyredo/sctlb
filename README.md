@@ -46,8 +46,8 @@ npm run test
 
 <img src="./Readme_assets/Test_coverage.jpg" height=100>
 
-HTML coverage page can be view in
-`<root>/jest-coverage/index.html`
+HTML coverage page can be view in <a href="https://github.com/vyredo/sctlb/blob/main/jest-coverage/index.html" target="_blank">
+`<root>/jest-coverage/index.html`</a>
 
 ## Custom React Component
 
