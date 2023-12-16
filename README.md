@@ -15,6 +15,18 @@ Hey there! Task completed! 🎉
 - github: <a href="https://github.com/vyredo/sctlb">`https://github.com/vyredo/sctlb`</a>
 - vercel: <a href="https://sctlb-vyredo.vercel.app/">`https://sctlb-vyredo.vercel.app/`</a>
 
+## Tech Stack
+
+- NextJS
+- Scss <a href="#why-css">reason why css</a>
+
+- Typescript
+- State management library (Zustand)
+- Animation library (CSS Animation) <a href="#why-css">reason why css</a>
+
+- Payment (Stripe)
+- Testing (React-Testing-library) -> requires extra libraries to preprocess tsx
+
 ## How to run locally
 
 ```bash
@@ -33,16 +45,6 @@ npm run test
 
 HTML coverage page can be view in
 `<root>/jest-coverage/index.html`
-
-## Tech Stack
-
-- NextJS
-- Scss
-- Typescript
-- State management library (Zustand)
-- Animation library (CSS Animation)
-- Payment (Stripe)
-- Testing (React-Testing-library) -> requires extra libraries to preprocess tsx
 
 ## Custom React Component
 
@@ -64,5 +66,6 @@ HTML coverage page can be view in
 <h4 id="why-css">Why CSS and not Tailwind for this task </h4>
 
 - It's impossible to get familiar with all JS libraries and css preprocessor like: `stylex`, `tailwind`, `bootstrap`, `mui`, `less`, `postcss`
+- I am most familiar with vanilla css with css animations
 - I'm not really acquainted with tailwindcss, Although <strong>I am perfectly fine learning new tools</strong>, but to use unfamiliar tool within 7 days for the entire app seems a bit risky.
 - So, I've opted for simple CSS. While Scss is mainly for generating those handy vendor prefix tags to handle browser compatibility vendor prefix.
