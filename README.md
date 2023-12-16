@@ -7,22 +7,8 @@ Hey there! Task completed! 🎉
 - Focused on key features for ya! Let me know what you think. 😊
   - [x] Use Zustand for the state management (Zustand will throw warning if we update state that is not mounted)
   - [x] Integrate to a test payment gateway (Stripe payment)
-
-## Tech Stack
-
-- NextJS
-- Scss
-- Typescript
-- State management library (Zustand)
-- Animation library (CSS Animation)
-- Payment (Stripe)
-- Testing (React-Testing-library) -> requires extra libraries to preprocess tsx
-
-#### Unfamiliar with Tailwindcss
-
-- It's impossible to be familiar with all JS libraries and css preprocessor like: `stylex`, `tailwind`, `bootstrap`, `mui`, `less`, `postcss`
-- I'm not really acquainted with tailwindcss, Although <strong>I am perfectly fine learning new tools</strong>, but to use unfamiliar tool within 7 days for the entire app seems a bit risky.
-- So, I've opted for simple CSS. While Scss is mainly for generating those handy vendor prefix tags to handle browser compatibility vendor prefix.
+  - [x] Unit test with report coverage, The test coverage can be improve in future
+  - [x] try to follow all tech stack except tailwindcss, <a href="#why-css">reason</a>
 
 ## Endpoints
 
@@ -64,3 +50,19 @@ HTML coverage page can be view in
 - turntable images
 - star and rating bounces
 - cart shake
+
+## Tech Stack
+
+- NextJS
+- Scss
+- Typescript
+- State management library (Zustand)
+- Animation library (CSS Animation)
+- Payment (Stripe)
+- Testing (React-Testing-library) -> requires extra libraries to preprocess tsx
+
+<h4 id="why-css">Unfamiliar with Tailwindcss</h4>
+
+- It's impossible to be familiar with all JS libraries and css preprocessor like: `stylex`, `tailwind`, `bootstrap`, `mui`, `less`, `postcss`
+- I'm not really acquainted with tailwindcss, Although <strong>I am perfectly fine learning new tools</strong>, but to use unfamiliar tool within 7 days for the entire app seems a bit risky.
+- So, I've opted for simple CSS. While Scss is mainly for generating those handy vendor prefix tags to handle browser compatibility vendor prefix.
