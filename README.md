@@ -14,6 +14,11 @@ Hey there! Task completed! 🎉
   - [x] Integrate to a test payment gateway (Stripe payment)
   - [x] Unit test with report coverage, The test coverage can be improve in future
   - [x] try to follow all tech stack except tailwindcss, <a href="#why-css">reason why css</a>
+  - [x] Modular structure of components and routes
+  - [x] <a href="#custom-react-component">Components</a> built from scratch
+  - [x] CI/CD to deploy to vercel
+  - [x] Responsive layout for mobile, tablet, desktop
+  - [x] Proxy request to dummyJSON from nextjs
 
 ## Tech Stack
 
