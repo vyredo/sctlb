@@ -22,11 +22,16 @@ interface GetProductResponse {
 export const getProducts = async (opt = new GetProductRequest()): Promise<GetProductResponse> => {
   try {
     const { skip, limit } = opt;
-    const products = (await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`).then((res) => res.json())) as { products: Product[] };
-
+    const {
+      response: { products },
+    } = (await fetch(`/api/products?limit=${limit}&skip=${skip}`).then((res) => res.json())) as {
+      response: {
+        products: Product[];
+      };
+    };
     // adding imagesTurntable for turntable animation
     for (let i = 1; i <= 12; i++) {
-      products.products.forEach((p) => {
+      products.forEach((p) => {
         if (!p["imagesTurntable"]) {
           p["imagesTurntable"] = [];
         }
@@ -37,7 +42,12 @@ export const getProducts = async (opt = new GetProductRequest()): Promise<GetPro
       });
     }
 
-    return products as GetProductResponse;
+    return {
+      products,
+      total: products.length,
+      skip,
+      limit,
+    } as GetProductResponse;
   } catch (error) {
     console.log(error);
     throw new Error(error as any);
@@ -50,7 +60,13 @@ export const getProductById = async (id: string): Promise<Product | null> => {
     if (isNaN(_id)) {
       throw new Error("Invalid id");
     }
-    const product = (await fetch(`https://dummyjson.com/products/${id}`).then((res) => res.json())) as Product;
+    const result = (await fetch(`/api/products/${id}`).then((res) => res.json())) as {
+      response: Product;
+    };
+
+    console.log("what is result", result);
+    const product = result.response;
+
     if (!product) {
       throw new Error("Product not found");
     }

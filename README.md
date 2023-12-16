@@ -5,6 +5,8 @@ Hey there! Task completed! 🎉
 - The task are quite big especially since I have to create several component from scratch and create unittest for each file.
 - I decide to keep design simple to save time.
 - Focused on key features for ya! Let me know what you think. 😊
+  - [x] Use Zustand for the state management (Zustand will throw warning if we update state that is not mounted)
+  - [x] Integrate to a test payment gateway (Stripe payment)
 
 ## Tech Stack
 
@@ -13,6 +15,8 @@ Hey there! Task completed! 🎉
 - Typescript
 - State management library (Zustand)
 - Animation library (CSS Animation)
+- Payment (Stripe)
+- Testing (React-Testing-library) -> requires extra libraries to preprocess tsx
 
 #### Unfamiliar with Tailwindcss
 
@@ -44,17 +48,6 @@ npm run test
 HTML coverage page can be view in
 `<root>/jest-coverage/index.html`
 
-## Bonus
-
-- [x] Use Zustand for the state management
-- [x] Integrate to a test payment gateway (Stripe payment)
-
-## Animation
-
-- turntable images
-- star and rating bounces
-- cart shake
-
 ## Custom React Component
 
 - Infinite Loader
@@ -65,3 +58,9 @@ HTML coverage page can be view in
 
 - Blackbox
   <img src="./Readme_assets/Image_Blackbox.jpg" height=100>
+
+## Animation
+
+- turntable images
+- star and rating bounces
+- cart shake
