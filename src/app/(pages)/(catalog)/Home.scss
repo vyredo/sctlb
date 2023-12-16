@@ -54,18 +54,16 @@
 /**
  * Tablet and Desktop
  */
+.tablet.products,
 .desktop.products {
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     padding: 0 15px;
 
     a {
-      border: 1px solid #e0e0e0;
-      box-shadow: 1px 1px 1px 1px #e0e0e0;
-
       .item {
-        border: none;
-        box-shadow: none;
+        border: 1px solid #e0e0e0;
+        box-shadow: 1px 1px 1px 1px #e0e0e0;
       }
     }
   }

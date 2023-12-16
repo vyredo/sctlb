@@ -22,7 +22,8 @@ main.cart {
 
   .detail {
     width: 100%;
-
+    display: flex;
+    flex-direction: column;
     .label {
       display: none;
     }
@@ -30,7 +31,6 @@ main.cart {
       .content {
         .row {
           display: flex;
-          align-items: center;
           border: 1px solid #e0e0e090;
           box-shadow: 1px 1px 1px 1px #e0e0e0;
           padding: 8px;
@@ -47,9 +47,7 @@ main.cart {
             flex: 1;
             display: flex;
             flex-wrap: wrap;
-            .title {
-              flex: 1;
-              min-width: calc(100vw - 150px);
+            a {
               border-bottom: 1px solid #e0e0e0;
               margin: 10px 0;
               padding-bottom: 10px;
@@ -58,6 +56,10 @@ main.cart {
               div:nth-child(1) {
                 text-transform: capitalize;
               }
+            }
+
+            .quantity-container {
+              flex: 0;
             }
 
             .product-price {
@@ -73,11 +75,8 @@ main.cart {
       }
     }
 
-    h2 {
-      margin: 10px 0;
-      text-align: center;
-    }
     .summary {
+      margin-top: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -86,6 +85,10 @@ main.cart {
       text-align: center;
       padding: 10px;
 
+      h2 {
+        margin: 10px 0;
+        text-align: center;
+      }
       .sctlb-button {
         width: 90%;
       }
@@ -99,40 +102,34 @@ main.cart {
 
 main.desktop.cart {
   .detail {
+    flex-direction: row;
     .label {
       display: none;
     }
     .price-section {
+      flex: 1;
       .content {
-        font-size: 20px;
+        font-size: 16px;
         .row {
           .row-content {
             align-items: center;
-            .title {
-              min-width: 40vw;
-              width: initial;
+            gap: 30px;
+            a {
+              max-width: 500px;
+              flex: 1;
               border: none;
             }
 
-            .quantity-container,
-            .price-container {
-              flex: 1;
-              min-width: initial;
-            }
-
-            .product-price {
-              flex: 1;
-              display: initial;
-            }
-
             .total-price {
-              flex: 1;
-              width: 30%;
+              flex: 0;
               text-align: right;
             }
           }
         }
       }
+    }
+    .summary {
+      margin-top: 0;
     }
   }
 }

@@ -141,7 +141,7 @@ const Cart: React.FC = () => {
                         <div>{cartProduct.brand}</div>
                       </div>
                     </Link>
-                    <Price className="product-price" realPrice={cartProduct.realPrice} strikePrice={cartProduct.strikePrice} />
+                    {/* <Price className="product-price" realPrice={cartProduct.realPrice} strikePrice={cartProduct.strikePrice} /> */}
                     <Quantity productId={cartProduct.id!} />
                     <Price className="total-price" realPrice={cartProduct.sumRealPrice} strikePrice={cartProduct.sumStrikePrice.toString()} />
                   </div>
@@ -150,8 +150,8 @@ const Cart: React.FC = () => {
             })}
           </div>
         </section>
-        <h2 className="font-title">Cart Summary</h2>
         <section className="summary">
+          <h2 className="font-title">Cart Summary</h2>
           <div>Total Amount</div>
           <Price className="total-price" realPrice={totalRealPrice.current.toString()} />
           <ul style={{ margin: "10px 0" }}>
