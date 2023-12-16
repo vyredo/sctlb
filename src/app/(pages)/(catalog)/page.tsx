@@ -45,16 +45,18 @@ export default function Home() {
           return (
             <Link href={`/products/${product.id}`} key={product.id + product.title + index}>
               <div className="item">
-                <div>{product.title}</div>
-                <div>{product.price}</div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={product.thumbnail} alt={product.title} width={200} height={200} />
+                <div className="title font-title">{product.title}</div>
+                <div className="description">{product.description}</div>
+
+                <div className="price">From ${product.price}</div>
               </div>
             </Link>
           );
         })}
       </div>
-      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <div className="infiniteloader-container">
         <InfiniteLoader loadFunction={loadProducts} />
       </div>
     </LayoutPage>
