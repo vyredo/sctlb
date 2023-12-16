@@ -24,13 +24,11 @@ Hey there! Task completed! 🎉
 
 - NextJS
 - Scss <a href="#why-css">reason why css</a>
-
 - Typescript
 - State management library (Zustand)
 - Animation library (CSS Animation) <a href="#why-css">reason why css</a>
-
 - Payment (Stripe)
-- Testing (React-Testing-library) -> requires extra libraries to preprocess tsx
+- Testing (React-Testing-library) -> requires **16** extra libraries to preprocess tsx
 
 ## How to run locally
 
