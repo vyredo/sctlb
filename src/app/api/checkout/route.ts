@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { total, items } = body;
   try {
-    const _amt = Number(total.toFixed(2)) * 100;
+    const _amt = Math.floor(Number(total.toFixed(2)) * 100);
     if (_amt < 0) throw new Error("Amount must be greater than 0");
     if (isNaN(_amt)) throw new Error("Amount must be a number");
     const response = await chargeWithTestAccount(_amt, {

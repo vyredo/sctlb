@@ -40,7 +40,6 @@ export default function Product({ params: { product_id } }: Props) {
   useEffect(() => {
     async function getproduct() {
       setLoading(true);
-      await sleep(1000);
       try {
         const product = await getProductById(product_id);
         if (!product) throw new Error("Product not found");

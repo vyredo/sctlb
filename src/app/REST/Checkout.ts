@@ -6,7 +6,16 @@ export const createCheckout = async (body: PaymentInfo): Promise<CreateCheckoutR
   return fetch("/api/checkout", {
     method: "post",
     body: JSON.stringify(body),
-  }).then((res) => res.json());
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      return res.json();
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
 };
 
 export type GetPaymentsStatusResponse = Array<{
