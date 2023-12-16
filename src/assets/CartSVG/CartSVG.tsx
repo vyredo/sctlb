@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CartSVG.scss";
 
 export const CartSVG: React.FC<{ onClick?: () => void; amt: number }> = ({ onClick, amt }) => {
+  const renderedAmt = React.useRef(amt);
+  const cartRef = React.useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (renderedAmt.current !== amt) {
+      renderedAmt.current = amt;
+      cartRef.current?.classList.add("shake");
+      setTimeout(() => {
+        cartRef.current?.classList.remove("shake");
+      }, 2000);
+    }
+  }, [amt]);
+
   return (
-    <div className="cart-container">
+    <div ref={cartRef} className="cart-container">
       {amt > 0 && <div className="amt">{amt}</div>}
       <svg
         className="icon"

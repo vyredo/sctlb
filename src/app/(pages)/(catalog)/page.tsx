@@ -40,6 +40,7 @@ export default function Home() {
   return (
     <LayoutPage className="products" loading={loading} seotitle="Catalog">
       <h1>Product Catalog</h1>
+      <div className="filter"></div>
       <div className="products-grid">
         {products.map((product, index) => {
           return (

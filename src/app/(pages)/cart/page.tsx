@@ -141,7 +141,6 @@ const Cart: React.FC = () => {
                         <div>{cartProduct.brand}</div>
                       </div>
                     </Link>
-                    {/* <Price className="product-price" realPrice={cartProduct.realPrice} strikePrice={cartProduct.strikePrice} /> */}
                     <Quantity productId={cartProduct.id!} />
                     <Price className="total-price" realPrice={cartProduct.sumRealPrice} strikePrice={cartProduct.sumStrikePrice.toString()} />
                   </div>

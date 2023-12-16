@@ -3,9 +3,27 @@
   font-weight: 600;
   border-radius: 16px;
   padding: 8px 16px;
+  cursor: pointer;
 
   &.primary {
     color: white;
     background-color: red;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    animation: bounce 0.5s ease-in-out;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.025);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 }

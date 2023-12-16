@@ -1,4 +1,5 @@
 import { Spinner } from "@/assets/Spinner/Spinner";
+import { sleep } from "@/lib/sleep";
 import { throttle } from "@/lib/throttle";
 import React, { useEffect, useRef } from "react";
 
@@ -10,7 +11,7 @@ export const InfiniteLoader: React.FC<{ loadFunction: () => Promise<any> }> = ({
     // use Observable
     // use IntersectionObserver
     // use scroll event
-    const intersectionObserver = new IntersectionObserver((entries) => {
+    const intersectionObserver = new IntersectionObserver(async (entries) => {
       if (entries[0].intersectionRatio <= 0) return;
       // load more content;
       throttleFunc.current();

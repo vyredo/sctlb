@@ -10,7 +10,6 @@ interface ProductsStoreState {
   clearProducts: () => void;
 }
 
-// todo: write unit tes for this
 export const useProductsStore = create<ProductsStoreState>()((set, get) => ({
   products: [],
   updateProducts: (p: Product) =>
