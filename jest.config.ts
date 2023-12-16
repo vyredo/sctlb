@@ -14,7 +14,7 @@ module.exports = {
     ".(ts|tsx)": "ts-jest",
   },
   coverageReporters: ["text", "lcov", "html"],
-  coverageDirectory: "./jest-coverage",
+  coverageDirectory: "./public/jest-coverage",
   collectCoverage: true,
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],

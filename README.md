@@ -38,7 +38,7 @@ cd sctlb
 npm run dev
 ```
 
-## How to run test with coverage
+<h2> How to run test with coverage <a href="https://sctlb-vyredo.vercel.app/jest-coverage/index.html" target="_blank">Open Report</a> </h2>
 
 ```bash
 npm run test
@@ -46,8 +46,8 @@ npm run test
 
 <img src="./Readme_assets/Test_coverage.jpg" height=100>
 
-HTML coverage page can be view in <a href="https://github.com/vyredo/sctlb/blob/main/jest-coverage/index.html" target="_blank">
-`<root>/jest-coverage/index.html`</a>
+HTML coverage page can be view in
+`<root>/jest-coverage/index.html`
 
 ## Custom React Component
 
