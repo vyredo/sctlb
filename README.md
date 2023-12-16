@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Note
 
-## Getting Started
+Hey there! Task completed! 🎉
 
-First, run the development server:
+- The task are quite big especially since I have to create several component from scratch and create unittest for each file.
+- I decide to keep design simple to save time.
+- Focused on key features for ya! Let me know what you think. 😊
+
+### Unfamiliar tool
+
+- It's impossible to be familiar with all Js libraries and css preprocessor like: `stylex`, `tailwind`, `bootstrap`, `mui`, `less`, `postcss`
+- I'm not really acquainted with tailwindcss, Although <strong>I am perfectly fine learning new tools</strong>, but to use unfamiliar tool within 7 days for the entire app seems a bit risky.
+- So, I've opted for simple CSS. Using Scss is mainly for generating those handy vendor prefix tags.
+
+## Endpoints
+
+- github: `https://github.com/vyredo/sctlb`
+- vercel: `https://sctlb-vyredo.vercel.app/`
+
+## How to run locally
 
 ```bash
+git clone
+cd sctlb
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to run test with coverage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<img src="">
 
-## Learn More
+HTML coverage page can be view in
+`<root>/jest-coverage/index.html`
 
-To learn more about Next.js, take a look at the following resources:
+## Bonus
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[x] Use Zustand for the state management
+[x] Integrate to a test payment gateway (Stripe payment)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## React Component
 
-## Deploy on Vercel
+- Infinite Loader
+  <img src="">
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Image Carousel
+  <img src="">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Blackbox
+  <img src="">
