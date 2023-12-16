@@ -6,16 +6,24 @@ Hey there! Task completed! 🎉
 - I decide to keep design simple to save time.
 - Focused on key features for ya! Let me know what you think. 😊
 
-### Unfamiliar tool
+## Tech Stack
 
-- It's impossible to be familiar with all Js libraries and css preprocessor like: `stylex`, `tailwind`, `bootstrap`, `mui`, `less`, `postcss`
+- NextJS
+- Scss
+- Typescript
+- State management library (Zustand)
+- Animation library (CSS Animation)
+
+#### Unfamiliar with Tailwindcss
+
+- It's impossible to be familiar with all JS libraries and css preprocessor like: `stylex`, `tailwind`, `bootstrap`, `mui`, `less`, `postcss`
 - I'm not really acquainted with tailwindcss, Although <strong>I am perfectly fine learning new tools</strong>, but to use unfamiliar tool within 7 days for the entire app seems a bit risky.
-- So, I've opted for simple CSS. Using Scss is mainly for generating those handy vendor prefix tags.
+- So, I've opted for simple CSS. While Scss is mainly for generating those handy vendor prefix tags to handle browser compatibility vendor prefix.
 
 ## Endpoints
 
-- github: `https://github.com/vyredo/sctlb`
-- vercel: `https://sctlb-vyredo.vercel.app/`
+- github: <a href="https://github.com/vyredo/sctlb">`https://github.com/vyredo/sctlb`</a>
+- vercel: <a href="https://sctlb-vyredo.vercel.app/">`https://sctlb-vyredo.vercel.app/`</a>
 
 ## How to run locally
 
@@ -31,7 +39,7 @@ npm run dev
 npm run test
 ```
 
-<img src="">
+<img src="./Readme_assets/Test_coverage.jpg" height=100>
 
 HTML coverage page can be view in
 `<root>/jest-coverage/index.html`
@@ -41,13 +49,19 @@ HTML coverage page can be view in
 - [x] Use Zustand for the state management
 - [x] Integrate to a test payment gateway (Stripe payment)
 
-## React Component
+## Animation
+
+- turntable images
+- star and rating bounces
+- cart shake
+
+## Custom React Component
 
 - Infinite Loader
-  <img src="">
+  <img src="./Readme_assets/Infinite_Loader.jpg" height=100>
 
 - Image Carousel
-  <img src="">
+  <img src="./Readme_assets/Image_Carousel.jpg" height=100>
 
 - Blackbox
-  <img src="">
+  <img src="./Readme_assets/Image_Blackbox.jpg" height=100>
