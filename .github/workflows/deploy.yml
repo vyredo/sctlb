@@ -25,3 +25,6 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} # Set the Vercel org id here
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # Set the Vercel project id here
         run: npx vercel --token $VERCEL_TOKEN --prod
+
+      - name: Run the tests
+        run: npm test -- --coverage
