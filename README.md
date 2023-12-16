@@ -51,14 +51,14 @@ HTML coverage page can be view in
 
 ## Custom React Component
 
-- Infinite Loader
-  <img src="./Readme_assets/Infinite_Loader.jpg" height=100>
+- Infinite Loader <br />
+  <img src="./Readme_assets/Infinite_Loader.jpg" height=100 style="border: 1px solid black">
 
-- Image Carousel
-  <img src="./Readme_assets/Image_Carousel.jpg" height=100>
+- Image Carousel <br />
+  <img src="./Readme_assets/Image_Carousel.jpg" height=100 style="border: 1px solid black">
 
-- Blackbox
-  <img src="./Readme_assets/Image_Blackbox.jpg" height=100>
+- Blackbox <br />
+  <img src="./Readme_assets/Image_Blackbox.jpg" height=100 style="border: 1px solid black">
 
 ## Animation
 
