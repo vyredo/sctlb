@@ -64,7 +64,6 @@ export const getProductById = async (id: string): Promise<Product | null> => {
       response: Product;
     };
 
-    console.log("what is result", result);
     const product = result.response;
 
     if (!product) {
