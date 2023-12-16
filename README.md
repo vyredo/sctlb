@@ -38,8 +38,8 @@ HTML coverage page can be view in
 
 ## Bonus
 
-[x] Use Zustand for the state management
-[x] Integrate to a test payment gateway (Stripe payment)
+- [x] Use Zustand for the state management
+- [x] Integrate to a test payment gateway (Stripe payment)
 
 ## React Component
 
