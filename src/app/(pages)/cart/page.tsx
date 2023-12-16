@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 import "./Cart.scss";
 
 const Cart: React.FC = () => {
-  const { products: cartProducts } = useCartStore((state) => state);
+  const { products: cartProducts, clear: clearCart } = useCartStore((state) => state);
   const { products, addProduct } = useProductsStore((state) => state);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -80,7 +80,7 @@ const Cart: React.FC = () => {
     return (
       <LayoutPage className="cart" loading={loading} seotitle="Cart">
         <h1>Shopping Cart</h1>
-        <div className="empty-cart">Your cart is empty</div>
+        <div className="empty-cart font-title">Your cart is empty</div>
       </LayoutPage>
     );
   }
@@ -111,6 +111,7 @@ const Cart: React.FC = () => {
     // filter empty object
     paymentList = paymentList.filter((p: any) => Object.keys(p).length !== 0);
     localStorage.setItem("paymentList", JSON.stringify(paymentList));
+    clearCart();
     router.push("/payments");
     return true;
   };
@@ -135,7 +136,7 @@ const Cart: React.FC = () => {
                   <img className="img" src={cartProduct.thumbnail} alt="thumbnail" />
                   <div className="row-content">
                     <Link href={`/products/${cartProduct.id}`}>
-                      <div className="title">
+                      <div className="title font-title">
                         <div>{cartProduct.title}</div>
                         <div>{cartProduct.brand}</div>
                       </div>
@@ -149,9 +150,10 @@ const Cart: React.FC = () => {
             })}
           </div>
         </section>
+        <h2 className="font-title">Cart Summary</h2>
         <section className="summary">
-          <h2>Cart Summary</h2>
-          <Price className="total-price" realPrice={totalRealPrice.current.toString()} strikePrice={totalStrikePrice.current.toString()} />
+          <div>Total Amount</div>
+          <Price className="total-price" realPrice={totalRealPrice.current.toString()} />
           <ul style={{ margin: "10px 0" }}>
             <li>All Payment will use default test card</li>
             <li>There is no need to fill user credit card here</li>
