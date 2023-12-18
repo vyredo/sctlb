@@ -57,8 +57,8 @@ HTML coverage page can be view in
 - Image Carousel <br />
   <img src="./Readme_assets/Image_Carousel.jpg" height=100 style="border: 1px solid black">
 
-- Blackbox <br />
-  <img src="./Readme_assets/Image_Blackbox.jpg" height=100 style="border: 1px solid black">
+- ImageViewer <br />
+  <img src="./Readme_assets/Image_ImageViewer.jpg" height=100 style="border: 1px solid black">
 
 ## Animation
 

@@ -13,7 +13,7 @@ module.exports = {
     ".(js|jsx)": "babel-jest",
     ".(ts|tsx)": "ts-jest",
   },
-  coverageReporters: ["text", "lcov", "html"],
+  coverageReporters: ["text", "html"],
   coverageDirectory: "./public/jest-coverage",
   collectCoverage: true,
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",

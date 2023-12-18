@@ -2,13 +2,13 @@
 
 import React, { FC, useState } from "react";
 import "./ImageCarousel.scss";
-import { useBlackboxStore } from "../Blackbox/Blackbox";
+import { useImageViewerStore } from "../ImageViewer/ImageViewer";
 
 const ImageCarousel: FC<{ images: any[] }> = ({ images }) => {
   const [current, setCurrent] = useState(0);
   const [hoverIdx, setHoverIdx] = useState(-1);
 
-  const { show } = useBlackboxStore();
+  const { show } = useImageViewerStore();
 
   const itemsPerSequence = 3;
   const leftArrowActive = current !== 0,

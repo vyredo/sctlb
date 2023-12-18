@@ -8,7 +8,7 @@ import ImageCarousel from "./(components)/ImageCarousell/ImageCarousel";
 import { LayoutPage } from "@/app/shared_components/LayoutPage/LayoutPage";
 import { Title } from "./(components)/Title";
 import { useRouter } from "next/navigation";
-import { Blackbox } from "./(components)/Blackbox/Blackbox";
+import { ImageViewer } from "./(components)/ImageViewer/ImageViewer";
 import { useProductStore } from "./productStore";
 import { Button } from "@/app/shared_components/Button/Button";
 import { Device, useDeviceStore } from "@/app/shared_components/LayoutPage/DeviceStore";
@@ -87,7 +87,7 @@ export default function Product({ params: { product_id } }: Props) {
 
   return (
     <LayoutPage className="product" seotitle={product.title}>
-      <Blackbox images={images} />
+      <ImageViewer images={images} />
 
       <section className="left">
         {device === Device.Mobile && <Title product={product} />}

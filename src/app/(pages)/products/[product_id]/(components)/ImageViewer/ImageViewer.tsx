@@ -3,11 +3,11 @@
 }
 
 import React, { useCallback, useEffect } from "react";
-import "./Blackbox.scss";
+import "./ImageViewer.scss";
 import { create } from "zustand";
 import { FullscreenSVG } from "@/assets/FullscreenSVG";
 
-interface BlackboxState {
+interface ImageViewerState {
   images: string[];
   isShowing: boolean;
   show: (idx: number) => void;
@@ -24,7 +24,7 @@ interface BlackboxState {
   isHeaderShow: boolean;
 }
 
-export const useBlackboxStore = create<BlackboxState>((set) => ({
+export const useImageViewerStore = create<ImageViewerState>((set) => ({
   images: [],
   isShowing: false,
   show: (idx: number) => set({ isShowing: true, selectedIdx: idx }),
@@ -44,8 +44,8 @@ export const useBlackboxStore = create<BlackboxState>((set) => ({
 interface Props {
   images: string[];
 }
-export const Blackbox: React.FC<Props> = ({ images }) => {
-  const { isShowing, selectedIdx, selectImageByIdx, hide, toggleHeader, isHeaderShow } = useBlackboxStore();
+export const ImageViewer: React.FC<Props> = ({ images }) => {
+  const { isShowing, selectedIdx, selectImageByIdx, hide, toggleHeader, isHeaderShow } = useImageViewerStore();
 
   const selectNext = useCallback(
     (idx: number) => {
@@ -91,7 +91,7 @@ export const Blackbox: React.FC<Props> = ({ images }) => {
 
   return (
     <section
-      className="blackbox-container"
+      className="ImageViewer-container"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
